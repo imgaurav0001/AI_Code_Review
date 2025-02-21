@@ -1,8 +1,12 @@
-const express = require("express");
-const aiController = require("../controllers/ai.controller"); // Ensure the correct path to controller
+const express = require('express');
 const router = express.Router();
 
-// Post request to get review
-router.post("/get-review", aiController.getReview); // Ensure this route matches the controller method
+router.post('/', (req, res) => {
+    const { code } = req.body;
+    if (!code) {
+        return res.status(400).json({ error: 'Code is required' });
+    }
+    res.json(`Reviewed code: ${code}`);
+});
 
 module.exports = router;
