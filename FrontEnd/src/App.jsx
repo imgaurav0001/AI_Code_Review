@@ -18,7 +18,8 @@ function App() {
     console.log("🔵 Button Clicked!");
 
     try {
-      const response = await axios.post("http://localhost:3000/ai/get-review", { code });
+      const response = await axios.post("https://ai-code-review-1.onrender.com/ai/get-review", { code });
+
 
       console.log("🟢 API Response:", response);
       console.log("🟢 API Data:", response.data);
