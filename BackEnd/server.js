@@ -5,15 +5,19 @@ const aiRoutes = require('./src/routes/ai.routes'); // Ensure correct path
 
 const app = express();
 
-// ✅ CORS Configuration: Allow Only Your Frontend
-const allowedOrigins = ["https://ai-code-review-frontend.onrender.com"];
+// ✅ CORS Configuration: Allow Frontend and Localhost for Testing
+const allowedOrigins = [
+  "https://ai-code-review-frontend.onrender.com",
+  "http://localhost:3000" // Allow local testing
+];
+
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST"],
   credentials: true,
 }));
 
-// Middleware to parse JSON
+// ✅ Middleware to parse JSON
 app.use(bodyParser.json());
 
 // 🟢 Health Check Endpoint
