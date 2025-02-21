@@ -19,16 +19,15 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://ai-code-review-1.onrender.com/review", // Correct API endpoint
+        "https://ai-code-review-1.onrender.com/ai/review", // Correct API endpoint
         { code },
         { headers: { "Content-Type": "application/json" } }
       );
 
       console.log("🟢 API Response:", response);
-      console.log("🟢 API Data:", response.data);
 
-      if (response.data && typeof response.data === "string") {
-        setReviewedCode(response.data);
+      if (response.data && response.data.reviewedCode) {
+        setReviewedCode(response.data.reviewedCode);
       } else {
         setReviewedCode("⚠️ No reviewed code available from the server.");
       }
@@ -65,7 +64,7 @@ function App() {
       </div>
 
       <div className="right">
-        <h2>Your Code Review:</h2> 
+        <h2>Your Code Review:</h2>
         <div className="reviewed-code">
           {reviewedCode ? (
             <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
